@@ -17,20 +17,24 @@ app.use(express.static('public'));
 
 // Write get function to retreive index.html and serve
 app.get('/', (req,res) => 
-  res.sendFile(path.join(__dirname, '/public/index.html'))  
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+// Sendfile so that the button works on the landing page to bring up notes.html
+app.get('/notes', (req,res) => 
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// Get request for notes
-app.get('api/notes', (req,res) => {
-  // send message to client
-  res.status(200).json(`${req.method} request received to get notes.`);
-
-  //Log request to server terminal
-  console.info(`${req.method} request received to get notes.`);
-});
+// Get request for notes, maybe don't need? 
+// app.get('/notes', (req,res) => {
+//   // send message to client
+//   res.status(200).json(`${req.method} request received to get notes.`);
+//   res.sendFile('')
+//   //Log request to server terminal
+//   console.info(`${req.method} request received to get notes.`);
+// });
 
 // Post request to add note to db
-app.post('/api/notes', (res,req) => {
+app.post('/api/notes', (req,res) => {
   // Log to server terminal that a POST request was received
   console.info(`${req.method} request received to add note.`);
 
@@ -56,7 +60,7 @@ app.post('/api/notes', (res,req) => {
         parsedNotes.push(newNote);
 
         // Overwrite old db.json with new db.json that has new note. Feels overly resource intensive
-        fs.writeFile('./db/db.json', JSON.stringify(parsedNotes, null, 4),(writeErr) => 
+        fs.writeFile('./db/db.json', JSON.stringify(parsedNotes),(writeErr) => 
         writeErr 
           ? console.error(writeErr) 
           : console.info('Successfully updated notes list')
@@ -65,8 +69,8 @@ app.post('/api/notes', (res,req) => {
     });
 
     const response = {
-      'status': 'success',
-      'body': newNote,
+      status: "success",
+      body: newNote,
     };
 
     console.log(response);
