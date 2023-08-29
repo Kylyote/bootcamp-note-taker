@@ -6,7 +6,7 @@ const fs = require('fs');
 const { v4: uuid } = require('uuid');
 
 // adding port to test locally
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // create instance of express as a variable
 const app = express();
