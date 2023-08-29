@@ -69,25 +69,19 @@ app.post('/api/notes', (req,res) => {
         // Overwrite old db.json with new db.json that has new note. Feels overly resource intensive
         fs.writeFile('./db/db.json', JSON.stringify(parsedNotes),(writeErr) => 
         writeErr 
-          ? res.status(500).json(writeErr) 
+          ? res.status(500).json(err) 
           : res.status(201).json('Successfully updated notes db.json')
-        );
+        )
       }
-    });
-
-    const response = {
-      status: "success",
-      body: newNote,
-    };
-
-    console.log(response);
-    res.status(201).json(response);
+    })
+    
   } else { 
     res.status(500).json('Error in posting note');
   }
 });
 
-app.delete('/api/notes:id', (req,res) => {
+// Deletes posted note. The ID is required so that each note is unique so titles can be shared.
+app.delete('/api/notes/:id', (req,res) => {
   fs.readFile ('./db/db.json', 'utf8', (err, data) => {
     // Handle if readFile returns an error
     if (err) {
