@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 // create instance of express as a variable
 const app = express();
 
+// Tell express to use extra methods
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
@@ -99,6 +100,7 @@ app.delete('/api/notes/:id', (req,res) => {
   });
 })
 
+// This catches the rest of the server requests and just redirects them to index.html. This isn't needed unless there is an issue with the URL. 
 app.get('*', (req,res) => 
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );

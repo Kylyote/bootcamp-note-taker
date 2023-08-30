@@ -1,6 +1,17 @@
-# Note Taker README
+# Basic Note Taker
+
+## Summary
 
 Writing backend to for a note taking website that will be deployed to Heroku.
+
+## Sources
+
+- Activity 18 and 20
+- Study groups with Chelsea and Donnie
+
+## Description
+
+When server.js is run, either locally or on the Heroku service, it allows index.html and notes.html to run properly. Even linking from index.html to notes.html requires the server.js to be running. Once the web page is running, index.js will be served to the client which will enable all the buttons and features of the page to function as intended. Save is in the upper right along with a "+" which will bring up a spot for a new note to be written; this is only needed when a save note is viewed. The delete buttons will remove the note from the webpage and db.json.
 
 ## User Story
 
@@ -32,3 +43,10 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 - Donnie Rawlings: https://github.com/drawlin22
 - Chelsea Wagner: https://github.com/caf62219
+
+## Links
+
+Link to repo:  
+https://github.com/Kylyote/bootcamp-note-taker  
+Link to Heroku deploy:  
+https://bootcamp-note-taker-deploy-a92a3c1d84fd.herokuapp.com/
